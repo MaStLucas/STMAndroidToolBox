@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="STMTintTextView">
+        <!-- Tint color applied to drawable. -->
+        <attr name="drawableTint" format="color"/>
+        <!-- Blending mode used to apply the tint. -->
+        <attr name="drawableTintMode">
+            <enum name="src_over" value="3"/>
+            <enum name="src_in" value="5"/>
+            <enum name="src_atop" value="9"/>
+            <enum name="multiply" value="14"/>
+            <enum name="screen" value="15"/>
+        </attr>
+    </declare-styleable>
+</resources>

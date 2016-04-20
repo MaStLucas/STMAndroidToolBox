@@ -8,7 +8,7 @@ import android.view.View;
  */
 public abstract class STMMutexOnClickListener implements View.OnClickListener{
     private static long mLastClickTime = 0;
-    private static final long THRESHOLD = 1000;
+    private static final long THRESHOLD = 500;
 
     @Override
     final public void onClick(View v) {

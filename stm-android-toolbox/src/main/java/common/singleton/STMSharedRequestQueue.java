@@ -19,6 +19,15 @@ public class STMSharedRequestQueue {
         mRequestQueue = getRequestQueue();
     }
 
+    private RequestQueue getRequestQueue() {
+        if (mRequestQueue == null) {
+            // getApplicationContext() is key, it keeps you from leaking the
+            // Activity or BroadcastReceiver if someone passes one in.
+            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+        }
+        return mRequestQueue;
+    }
+
     public static STMSharedRequestQueue getInstance(Context context) {
         if (mInstance == null) {
             synchronized (STMSharedRequestQueue.class){
@@ -28,15 +37,6 @@ public class STMSharedRequestQueue {
             }
         }
         return mInstance;
-    }
-
-    public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
-            // getApplicationContext() is key, it keeps you from leaking the
-            // Activity or BroadcastReceiver if someone passes one in.
-            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
-        }
-        return mRequestQueue;
     }
 
     public <T> void addToRequestQueue(Request<T> req) {

@@ -1,4 +1,4 @@
-package common;
+package common.singleton;
 
 import android.content.Context;
 
@@ -19,9 +19,13 @@ public class STMSharedRequestQueue {
         mRequestQueue = getRequestQueue();
     }
 
-    public static synchronized STMSharedRequestQueue getInstance(Context context) {
+    public static STMSharedRequestQueue getInstance(Context context) {
         if (mInstance == null) {
-            mInstance = new STMSharedRequestQueue(context);
+            synchronized (STMSharedRequestQueue.class){
+                if (mInstance == null){
+                    mInstance = new STMSharedRequestQueue(context);
+                }
+            }
         }
         return mInstance;
     }

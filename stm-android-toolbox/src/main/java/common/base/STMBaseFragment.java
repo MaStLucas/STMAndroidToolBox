@@ -15,10 +15,9 @@ import android.widget.Toast;
 public abstract class STMBaseFragment extends Fragment implements IBaseView{
 
     private STMBaseActivity mActivity;
-    private View mLayoutView;
 
     protected abstract int getLayoutResId();
-    protected abstract void initView();
+    protected abstract void initView(View root, ViewGroup container);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,9 +27,9 @@ public abstract class STMBaseFragment extends Fragment implements IBaseView{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mLayoutView = getLayoutView(inflater, container);
-        initView();
-        return mLayoutView;
+        View root = getLayoutView(inflater, container);
+        initView(root, container);
+        return root;
     }
 
     private View getLayoutView(LayoutInflater inflater, ViewGroup container) {
